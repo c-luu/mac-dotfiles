@@ -1,0 +1,2 @@
+{{- includeTemplate ".chezmoitemplates/validate-profiles" . -}}
+{{ dict "data" (dict "profiles" .profiles) | toToml }}

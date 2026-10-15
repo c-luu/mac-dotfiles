@@ -1,0 +1,5 @@
+{{- range $id := list "account-a" "account-b" "enterprise" }}
+{{- if not (hasKey $.profiles $id) }}
+.config/git/{{ $id }}.inc
+{{- end }}
+{{- end }}

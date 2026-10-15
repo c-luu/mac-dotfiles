@@ -1,0 +1,2 @@
+# Optional: explicitly select this manifest to install GitHub CLI.
+brew "gh"

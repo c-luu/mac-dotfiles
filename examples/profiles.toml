@@ -1,0 +1,34 @@
+# Copy outside this repository as your local chezmoi config; replace every REPLACE_ME.
+# Profiles, root paths, keys, and accounts are independent. Add/remove tables as needed.
+[data.profiles.account-a]
+authorName = "REPLACE_ME"
+authorEmail = "REPLACE_ME"
+repositoryRoots = ["~/Developer/account-a"]
+sshAlias = "github-account-a"
+hostname = "github.com"
+port = 22
+sshUser = "git"
+identityFile = "~/.ssh/account-a"
+expectedAccount = "REPLACE_ME"
+
+[data.profiles.account-b]
+authorName = "REPLACE_ME"
+authorEmail = "REPLACE_ME"
+repositoryRoots = ["~/Developer/account-b"]
+sshAlias = "github-account-b"
+hostname = "github.com"
+port = 22
+sshUser = "git"
+identityFile = "~/.ssh/account-b"
+expectedAccount = "REPLACE_ME"
+
+[data.profiles.enterprise]
+authorName = "REPLACE_ME"
+authorEmail = "REPLACE_ME"
+repositoryRoots = ["~/Developer/enterprise"]
+sshAlias = "git-enterprise"
+hostname = "REPLACE_ME"
+port = 22
+sshUser = "git"
+identityFile = "~/.ssh/enterprise"
+expectedAccount = "REPLACE_ME"

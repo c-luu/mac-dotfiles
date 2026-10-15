@@ -1,0 +1,6 @@
+{{- $path := .path -}}
+{{- if hasPrefix "~/" $path -}}
+{{- $path = joinPath .home (trimPrefix "~/" $path) -}}
+{{- end -}}
+{{- if not (hasPrefix "/" $path) -}}{{ fail "profile paths must be absolute or start with ~/" }}{{- end -}}
+{{- output "/bin/zsh" "-f" "-c" "print -r -- ${1:A}" "--" $path | trim -}}

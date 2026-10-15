@@ -1,0 +1,9 @@
+{{- includeTemplate ".chezmoitemplates/validate-profiles" . -}}
+{{- includeTemplate ".chezmoitemplates/validate-sources" . -}}
+{{- range $id, $p := .profiles -}}
+{{- $key := includeTemplate ".chezmoitemplates/normalize-path" (dict "path" $p.identityFile "home" $.chezmoi.homeDir) -}}
+{{- printf "P\t%s\t%s\t%s\t%s\t%s\t%v\t%s\t%s\t%s\n" $id $p.authorName $p.authorEmail $p.sshAlias $p.hostname $p.port $p.sshUser $key $p.expectedAccount -}}
+{{- range $root := $p.repositoryRoots -}}
+{{- $normal := includeTemplate ".chezmoitemplates/normalize-path" (dict "path" $root "home" $.chezmoi.homeDir) -}}
+{{- printf "R\t%s\t%s\n" $id $normal -}}
+{{- end -}}{{- end -}}

@@ -1,0 +1,108 @@
+
+# ==========================================
+# mac-dotfiles — Public Repository
+# ==========================================
+
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ==========================================
+# Credentials and private keys
+# ==========================================
+
+# SSH private keys and configuration backups
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+id_ed25519_*
+*.pem
+*.p12
+*.pfx
+*.key
+
+# Credential files
+.netrc
+.git-credentials
+credentials.json
+auth.json
+*_credentials.json
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Local secrets
+secrets/
+.secrets/
+*.secret
+*.secrets
+
+# ==========================================
+# Local configuration and backups
+# ==========================================
+
+*.local
+*.local.yaml
+*.local.yml
+*.local.json
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+
+# ==========================================
+# Temporary files and logs
+# ==========================================
+
+tmp/
+temp/
+*.tmp
+*.log
+
+# ==========================================
+# Editor-specific local state
+# ==========================================
+
+.vscode/settings.local.json
+.idea/
+*.iml
+
+# ==========================================
+# Build / dependency artifacts
+# ==========================================
+
+node_modules/
+dist/
+coverage/
+
+# ==========================================
+# Tool-specific local state
+# ==========================================
+
+.codex/auth.json
+.codex/sessions/
+.copilot/
+
+# Public-source boundaries: local identity and authentication state
+chezmoi.toml
+chezmoi.yaml
+chezmoi.yml
+chezmoi.json
+*.local.toml
+.config/chezmoi/
+.config/gh/
+hosts.yml
+hosts.yaml
+*.keychain
+*.keychain-db
+*.keychain-export
+profiles.local.*
+backups/
+.local-state/

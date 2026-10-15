@@ -1,0 +1,5 @@
+{{- includeTemplate ".chezmoitemplates/validate-profiles" .data -}}
+{{- $p := index .data.profiles .id -}}
+[user]
+    name = {{ $p.authorName | toRawJson }}
+    email = {{ $p.authorEmail | toRawJson }}

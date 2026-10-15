@@ -1,0 +1,10 @@
+{{- includeTemplate ".chezmoitemplates/validate-profiles" . -}}
+{{- includeTemplate ".chezmoitemplates/validate-sources" . -}}
+# Managed by mac-dotfiles. No global fallback author.
+[user]
+    useConfigOnly = true
+{{ range $id, $p := .profiles }}{{ range $root := $p.repositoryRoots }}
+{{ $normal := includeTemplate ".chezmoitemplates/normalize-path" (dict "path" $root "home" $.chezmoi.homeDir) }}
+[includeIf {{ printf "gitdir:%s/" (trimSuffix "/" $normal) | toRawJson }}]
+    path = {{ joinPath $.chezmoi.destDir ".config/git" (printf "%s.inc" $id) | toRawJson }}
+{{ end }}{{ end }}

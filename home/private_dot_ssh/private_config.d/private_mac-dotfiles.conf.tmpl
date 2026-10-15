@@ -1,0 +1,15 @@
+{{- includeTemplate ".chezmoitemplates/validate-profiles" . -}}
+{{- includeTemplate ".chezmoitemplates/validate-sources" . -}}
+# Managed by mac-dotfiles. Credentials are provisioned separately.
+{{ range $id, $p := .profiles }}
+Host {{ $p.sshAlias }}
+    HostName {{ $p.hostname }}
+    Port {{ $p.port }}
+    User {{ $p.sshUser }}
+    IdentityFile {{ includeTemplate ".chezmoitemplates/normalize-path" (dict "path" $p.identityFile "home" $.chezmoi.homeDir) | toRawJson }}
+    IdentitiesOnly yes
+    AddKeysToAgent yes
+    UseKeychain yes
+{{ end }}
+# Reset scope before any subsequent user configuration.
+Host *

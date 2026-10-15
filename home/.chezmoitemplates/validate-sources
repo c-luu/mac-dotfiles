@@ -1,0 +1,3 @@
+{{- range $id, $_ := .profiles -}}
+{{- $_ := output "/bin/sh" "-c" "test -f \"$1\"" "--" (joinPath $.chezmoi.sourceDir "dot_config/private_git" (printf "private_%s.inc.tmpl" $id)) -}}
+{{- end -}}
