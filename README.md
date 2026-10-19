@@ -31,8 +31,11 @@ brew bundle install --no-upgrade --file=Brewfile.homeops
 ```
 
 The installer uses `uv tool` and the reviewed immutable commit in
-`homeops-version`; it does not require a HomeOps source checkout. A matching
-installation is left untouched. A mismatch is reported and requires explicit
+`homeops-version`; it does not require a HomeOps source checkout. The installed
+package's Git provenance is checked in its isolated environment before updating
+the local installation marker. A matching installation is left untouched; a
+marker alone cannot prove an installation is current. A mismatch or
+unverifiable installation is reported and requires explicit
 approval before replacement:
 
 ```sh
@@ -44,6 +47,14 @@ HomeOps' own checkout and development environment separately from this
 end-user CLI installation. To roll back, review and replace the declared
 commit, then run the installer with `--upgrade`; unrelated Homebrew packages
 are not uninstalled.
+
+Installer fixtures run offline as part of `tests/run.sh` (or separately with
+`bash tests/homeops.sh`), using temporary environments and stubbed uv downloads.
+For isolated real-uv validation, `HOMEOPS_UV` selects the uv executable and
+`HOMEOPS_INSTALL_STATE_DIR` relocates only the installer's marker; normal
+installation keeps the standard HomeOps state location. `UV_TOOL_DIR` and
+`UV_TOOL_BIN_DIR` can isolate uv's environment and CLI entrypoints without
+changing the user's normal installation.
 
 The existing VS Code multi-root workspace is only an editing convenience. It
 opens `homeops` and `../mac-dotfiles` as independent repositories relative to
