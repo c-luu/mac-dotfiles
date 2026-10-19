@@ -22,6 +22,37 @@ Optional GitHub CLI is a separate selection:
 brew bundle install --no-upgrade --file=Brewfile.gh
 ```
 
+HomeOps is an optional Android operations CLI. Select its separate
+prerequisites only when needed:
+
+```sh
+brew bundle install --no-upgrade --file=Brewfile.homeops
+./scripts/install-homeops.sh
+```
+
+The installer uses `uv tool` and the reviewed immutable commit in
+`homeops-version`; it does not require a HomeOps source checkout. A matching
+installation is left untouched. A mismatch is reported and requires explicit
+approval before replacement:
+
+```sh
+./scripts/install-homeops.sh --upgrade
+```
+
+HomeOps-specific installation is never run by chezmoi. Developers should use
+HomeOps' own checkout and development environment separately from this
+end-user CLI installation. To roll back, review and replace the declared
+commit, then run the installer with `--upgrade`; unrelated Homebrew packages
+are not uninstalled.
+
+The existing VS Code multi-root workspace is only an editing convenience. It
+opens `homeops` and `../mac-dotfiles` as independent repositories relative to
+the workspace file. On another Mac, place the two checkouts as siblings and
+recreate an equivalent workspace manually if desired; do not use the workspace
+as a deployment system. HomeOps owns its application configuration, local
+reports, cleanup state, tests, and releases. This repository owns workstation
+bootstrap, Homebrew, chezmoi, and the HomeOps installer.
+
 These operations install missing dependencies without requesting upgrades or explicitly uninstalling unlisted packages. Homebrew's normal automatic cleanup remains enabled. Homebrew remains a rolling package manager, so manifests do not pin exact versions. See [Bundle documentation](https://docs.brew.sh/Brew-Bundle-and-Brewfile) and [cleanup controls](https://docs.brew.sh/FAQ). There are no package hooks in chezmoi.
 
 Next create/edit local profiles, preview and apply fragments, integrate includes, and run offline validation. Provision keys separately only if needed. Invoke network authentication checks explicitly at the end.
