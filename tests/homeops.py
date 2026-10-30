@@ -94,7 +94,7 @@ class InstallerTests(unittest.TestCase):
     def test_fresh_install_uses_exact_reference_and_verified_metadata(self):
         result = self.run_installer()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertEqual(self.attempts(), [['tool', 'install',
+        self.assertEqual(self.attempts(), [['tool', 'install', '--with', 'trafilatura',
                          'git+https://github.com/c-luu/homeops.git@' + REVIEWED]])
         self.assertEqual(self.marker.read_text(), REVIEWED + '\n')
 

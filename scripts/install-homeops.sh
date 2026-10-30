@@ -68,7 +68,7 @@ if [[ $existing -eq 1 && $upgrade -ne 1 ]]; then
     exit 1
 fi
 
-arguments=(tool install)
+arguments=(tool install --with trafilatura)
 if [[ $existing -eq 1 ]]; then arguments+=(--force); fi
 arguments+=("git+https://github.com/c-luu/homeops.git@${reference}")
 "$uv_executable" "${arguments[@]}"

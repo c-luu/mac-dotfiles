@@ -1,3 +1,5 @@
 # Optional HomeOps prerequisites.
 brew "uv"
+brew "pandoc"
+brew "epubcheck"
 cask "android-platform-tools"

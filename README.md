@@ -30,6 +30,21 @@ brew bundle install --no-upgrade --file=Brewfile.homeops
 ./scripts/install-homeops.sh
 ```
 
+The HomeOps manifest also provides the optional reading-pipeline tools:
+Pandoc for EPUB conversion and EPUBCheck for standards validation. The
+installer adds Trafilatura to HomeOps' isolated `uv tool` environment so
+single-URL article conversion can import it at runtime:
+
+```sh
+homeops reading markdown ./docs/notes.md --output-dir "$HOME/Library/Application Support/HomeOps/reading"
+homeops reading article "https://example.com/article" --output-dir "$HOME/Library/Application Support/HomeOps/reading"
+homeops reading validate ./book.epub --epubcheck "$(brew --prefix)/bin/epubcheck"
+```
+
+The reading tools are local conversion and validation dependencies only. No
+server, OPDS listener, firmware flasher, or network service is started by the
+manifest or installer.
+
 The installer uses `uv tool` and the reviewed immutable commit in
 `homeops-version`; it does not require a HomeOps source checkout. The installed
 package's Git provenance is checked in its isolated environment before updating
